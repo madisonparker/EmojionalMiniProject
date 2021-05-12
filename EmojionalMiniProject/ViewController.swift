@@ -16,17 +16,29 @@ class ViewController: UIViewController {
 
 
 @IBAction func showMessage(sender: UIButton) {
+    let selectedEmotion = sender.titleLabel?.text
     
-    // in as much detail as possible
-    // pseudo-code the things that need to happen
-    // when a user clicks an emoji button
+
+    let options = customMessages[emojis[selectedEmotion!]!]!.count
+    let emojiMessage = customMessages[emojis[selectedEmotion!]!]?[Int.random(in: 0 ... options-1)]
+    
+
+    let alertController = UIAlertController(title:selectedEmotion, message: emojiMessage, preferredStyle:UIAlertController.Style.alert)
     
     
-    let alertController = UIAlertController(title:"You feel...", message:"Yay!", preferredStyle:UIAlertController.Style.alert)
-    
-    alertController.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+    alertController.addAction(UIAlertAction(title: "Choose Again", style: UIAlertAction.Style.default, handler: nil))
     
     present(alertController, animated: true, completion: nil)
 }
 
+    let emojis = ["🤪": "wack", "😖": "stressed", "😭": "ugly crying", "😃": "i love life"]
+    
+    let customMessages = [
+        "wack": ["me too sis", "ahhh!", "lol you're so silly"],
+        "stressed": ["time for some chocolate!", "take a deeeeep breathe"],
+        "ugly crying": ["take it one day at a time", "aw, so sad!"],
+        "i love life": ["YUS QUEEN", "killing the game", "good for you:)"]
+    
+    ]
+    
 }
